@@ -1,0 +1,11 @@
+{
+    "label": "PS_VLAN_Rewrite",
+    "values": {
+        "VLAN_Rewrite": [
+            {
+                "VN_finance_1": "123",
+                "VN_Marketing_2": "456"
+            }
+        ]
+    }
+}

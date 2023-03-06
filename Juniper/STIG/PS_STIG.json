@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+    "label": "PS_STIG",
+    "values": {
+      "STIG": {
+        "BGP_AUTH_KEYS": {
+          "KEY_5": "$9$taTM01ElK8db2cyb24aiHtuO1Sr",
+          "KEY_4": "$9$XM2NVsaZjP5F245Fn/0OX7-d24",
+          "KEY_7": "$9$DxH.f36A1RSTzRSreXxDikPFn",
+          "KEY_6": "$9$5zn90BEevLApvLxNY25QF6p0",
+          "KEY_1": "$9$NoVsgGDkTz6oJz69A1INdbsoJ",
+          "KEY_3": "$9$rgFKWXVwgUjq7-jqmfn6revL-V",
+          "KEY_2": "$9$wo2oZHqfn/tUj/tuOcSwYgaDi"
+        },
+        "NTP": {
+          "KEY_1": "$9$Bl51crvWX-Vs",
+          "SERVER_1": "12.12.12.12",
+          "SERVER_2": "12.12.12.13",
+          "KEY_2": "$9$E50hlvLx-wY4"
+        },
+        "SNMP": {
+          "USER_AUTH_PASS": "JTACTEST",
+          "USER_PRIV_PASS": "JTACTEST"
+        },
+        "MGMT_NETWORKS": [
+          "192.168.10.0",
+          "172.16.0.0"
+        ],
+        "SYSLOG": {
+          "ARCHIVE_KEY": "$9$2f4aUF39pu1FnWx7N2gz369A0REy",
+          "SYSLOG_SERVER": "13.13.13.13",
+          "ARCHIVE_URL": "172.16.10.1:/var/backup"
+        },
+        "RADIUS": {
+          "SERVER_1": "11.11.11.11",
+          "SERVER_2": "12.12.12.12"
+        },
+        "APSTRA_SERVER": "100.100.100.100",
+        "LOGIN": {
+          "EMERGENCY_KEY": "$6$TfS4qbyC$6Uvm9nr8vOk8NrYxQ1fJx7Tn8qQMzxZ52B9zxALXmxVfL4KYiYTZUTZeWSMGB3qPXMIAE/hpPmUPXFeMSQOXh.",
+          "MESSAGE": "You are accessing a U.S. Government (USG) Information System (IS) that is provided\nfor USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the\nfollowing conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes\nincluding, but not limited to, penetration testing, COMSEC monitoring, network\noperations and defense, personnel misconduct (PM), law enforcement (LE), and\ncounterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine\nmonitoring, interception, and search, and may be disclosed or used for any USG-\nauthorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect\nUSG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI\ninvestigative searching or monitoring of the content of privileged communications, or\nwork product, related to personal representation or services by attorneys,\npsychotherapists, or clergy, and their assistants.  Such communications and work product\nare private and confidential.  See User Agreement for details."
+        }
+      }
+    },
+    "values_yaml": "STIG:\n  APSTRA_SERVER: 100.100.100.100\n  BGP_AUTH_KEYS:\n    KEY_1: $9$NoVsgGDkTz6oJz69A1INdbsoJ\n    KEY_2: $9$wo2oZHqfn/tUj/tuOcSwYgaDi\n    KEY_3: $9$rgFKWXVwgUjq7-jqmfn6revL-V\n    KEY_4: $9$XM2NVsaZjP5F245Fn/0OX7-d24\n    KEY_5: $9$taTM01ElK8db2cyb24aiHtuO1Sr\n    KEY_6: $9$5zn90BEevLApvLxNY25QF6p0\n    KEY_7: $9$DxH.f36A1RSTzRSreXxDikPFn\n  LOGIN:\n    EMERGENCY_KEY: $6$TfS4qbyC$6Uvm9nr8vOk8NrYxQ1fJx7Tn8qQMzxZ52B9zxALXmxVfL4KYiYTZUTZeWSMGB3qPXMIAE/hpPmUPXFeMSQOXh.\n    MESSAGE: 'You are accessing a U.S. Government (USG) Information System (IS) that\n      is provided\n\n      for USG-authorized use only.\n\n\n      By using this IS (which includes any device attached to this IS), you consent\n      to the\n\n      following conditions:\n\n\n      -The USG routinely intercepts and monitors communications on this IS for purposes\n\n      including, but not limited to, penetration testing, COMSEC monitoring, network\n\n      operations and defense, personnel misconduct (PM), law enforcement (LE), and\n\n      counterintelligence (CI) investigations.\n\n\n      -At any time, the USG may inspect and seize data stored on this IS.\n\n\n      -Communications using, or data stored on, this IS are not private, are subject\n      to routine\n\n      monitoring, interception, and search, and may be disclosed or used for any USG-\n\n      authorized purpose.\n\n\n      -This IS includes security measures (e.g., authentication and access controls)\n      to protect\n\n      USG interests--not for your personal benefit or privacy.\n\n\n      -Notwithstanding the above, using this IS does not constitute consent to PM,\n      LE or CI\n\n      investigative searching or monitoring of the content of privileged communications,\n      or\n\n      work product, related to personal representation or services by attorneys,\n\n      psychotherapists, or clergy, and their assistants.  Such communications and\n      work product\n\n      are private and confidential.  See User Agreement for details.'\n  MGMT_NETWORKS:\n  - 192.168.10.0\n  - 172.16.0.0\n  NTP:\n    KEY_1: $9$Bl51crvWX-Vs\n    KEY_2: $9$E50hlvLx-wY4\n    SERVER_1: 12.12.12.12\n    SERVER_2: 12.12.12.13\n  RADIUS:\n    SERVER_1: 11.11.11.11\n    SERVER_2: 12.12.12.12\n  SNMP:\n    USER_AUTH_PASS: JTACTEST\n    USER_PRIV_PASS: JTACTEST\n  SYSLOG:\n    ARCHIVE_KEY: $9$2f4aUF39pu1FnWx7N2gz369A0REy\n    ARCHIVE_URL: 172.16.10.1:/var/backup\n    SYSLOG_SERVER: 13.13.13.13\n",
+    "id": "38046262-d90a-4492-bfa6-250b7d5d4e4d"
+  }      
+}

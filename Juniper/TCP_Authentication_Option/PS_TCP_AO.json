@@ -1,0 +1,10 @@
+{
+    "label": "PS_TCP_AO",
+    "values": {
+        "TCP_AO": [
+            {
+                "Key_Chain_Name": "My_Super_Key_Chain",
+                "Secret": "My_Super_Secret"
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "display_name": "CFG_CPP_DDOS_vxlan",
+    "ref_archs": [
+        "two_stage_l3clos"
+    ],
+    "generators": [
+        {
+            "config_style": "junos",
+            "section": "set_based_system",
+            "template_text": "set system ddos-protection protocols vxlan aggregate bandwidth 1000\nset system ddos-protection protocols vxlan aggregate burst 400\n"
+        }
+    ]
+}

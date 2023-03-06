@@ -1,0 +1,13 @@
+{
+    "display_name": "CFG_Port_Mirroring",
+    "ref_archs": [
+        "two_stage_l3clos"
+    ],
+    "generators": [
+        {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "forwarding-options {\n    analyzer {\n{% for Analyser in Port_Mirroring %}\n            {{ Analyser['Analyser_Name'] }} {\n                input {\n                    ingress {\n                            interface {{ Analyser['Input_Ingress_Intf'] }};\n                    }\n                    egress {\n                            interface {{ Analyser['Input_Egress_Intf'] }};\n                    }\n                }\n                output {\n{% if Analyser['Analyser_Type'] == 'Local' %}\n                        interface {{ Analyser['Output_Intf'] }};\n{% elif Analyser['Analyser_Type'] == 'Remote' %}\n                        ip-address {{ Analyser['Output_IP'] }};\n{% endif %}\n                }\n            }\n        }\n{% endfor %}\n    }"
+        }
+    ]
+}

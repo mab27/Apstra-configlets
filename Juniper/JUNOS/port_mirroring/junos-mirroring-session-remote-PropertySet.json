@@ -1,8 +1,0 @@
-{
-    "values": {
-        "r_output_if": "10.250.0.1", 
-        "r_input_ingress_if": "xe-0/0/5.0", 
-        "r_input_egress_if": "xe-0/0/5.0"
-    }, 
-    "label": "JUNOS Mirroring Session Remote"
-}

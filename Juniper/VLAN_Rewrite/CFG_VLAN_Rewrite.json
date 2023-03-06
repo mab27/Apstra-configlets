@@ -1,0 +1,13 @@
+{
+    "display_name": "CFG_Vlan_Rewrite",
+    "ref_archs": [
+        "two_stage_l3clos"
+    ],
+    "generators": [
+        {
+            "config_style": "junos",
+            "section": "system",
+            "template_text": "{% for intf in interface.values() %}\n    {% for vlan_id, vlan_data in vlan.items() %}\n            {% if vlan_data['name'] in vlan_rewrite and vlan_id in intf.allowed_vlans %}\ninterfaces {\n    {{ intf['ifName'] }} {\n        unit 0 {\n            familiy ethernet-switching {\n                vlan rewrite {\n                    translate {{ vlan_rewrite[vlan_rewrite['name']] }} {{ vlan_id }}     \n                }\n            }\n        }\n    }\n}\n            {% endif %}\n    {% endfor %}\n{% endfor %}"
+        }
+    ]
+}

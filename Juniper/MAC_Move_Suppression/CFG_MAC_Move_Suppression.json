@@ -1,0 +1,13 @@
+{
+    "display_name": "CFG_MAC_Move_Suppression",
+    "ref_archs": [
+        "two_stage_l3clos"
+    ],
+    "generators": [
+        {
+            "config_style": "junos",
+            "section": "set_based_system",
+            "template_text": "set protocols evpn duplicate-mac-detection detection-threshold 6 detection-window 180 auto-recovery-time 5\n"
+        }
+    ]
+}

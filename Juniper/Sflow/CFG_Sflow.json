@@ -1,0 +1,13 @@
+{
+    "display_name": "CFG_Sflow",
+    "ref_archs": [
+        "two_stage_l3clos"
+    ],
+    "generators": [
+        {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "protocols {\n    sflow {\n        polling-interval 5;\n        source-ip {{ management_ip }};\n        sample-rate {\n            ingress {{ Sflow['Sampling_Rate_Ingress'] }};\n            egress {{ Sflow['Sampling_Rate_Egress'] }};\n        }\n            collector {{ Sflow['Collector_IP'] }} {\n            udp-port {{ Sflow['Collector_Port'] }};\n        }\n{% for interface in interface.values() %}\n    {% if 'sflow' in interface['tags'] %}\n        interfaces {{ interface['IntfName'] }} \n    {% endif %}\n{% endfor %}\n    }\n}\nrouting-options {\n    static {\n        route {{ Sflow['Collector_IP'] }} next-table mgmt_junos.inet.0;\n    }\n}"
+        }
+    ]
+}

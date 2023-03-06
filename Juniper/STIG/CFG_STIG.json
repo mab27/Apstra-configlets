@@ -1,0 +1,97 @@
+{
+    "display_name": "CFG_STIG",
+    "ref_archs": [
+        "two_stage_l3clos"
+    ],
+    "generators": [
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: BGP_Auth\n#}\ngroups {\n  stig_bgp_auth{\n    security {\n      authentication-key-chains {\n        key-chain bgp_auth {\n          key 1 {\n            secret {{ STIG['BGP_AUTH_KEYS']['KEY_1'] }};\n            start-time \"2022-9-14.00:00:00 +0000\";\n          }\n          key 2 {\n            secret {{ STIG['BGP_AUTH_KEYS']['KEY_2'] }};\n            start-time \"2022-10-14.00:00:00 +0000\";\n          }\n          key 3 {\n            secret {{ STIG['BGP_AUTH_KEYS']['KEY_3'] }};\n            start-time \"2022-11-14.00:00:00 +0000\";\n          }\n          key 4 {\n            secret {{ STIG['BGP_AUTH_KEYS']['KEY_4'] }};\n            start-time \"2022-12-14.00:00:00 +0000\";\n          }\n          key 5 {\n            secret {{ STIG['BGP_AUTH_KEYS']['KEY_5'] }};\n            start-time \"2023-01-14.00:00:00 +0000\";\n          }\n          key 6 {\n            secret {{ STIG['BGP_AUTH_KEYS']['KEY_6'] }};\n            start-time \"2023-02-14.00:00:00 +0000\";\n          }\n          key 7 {\n            secret {{ STIG['BGP_AUTH_KEYS']['KEY_7'] }};\n            start-time \"2023-03-14.00:00:00 +0000\";\n          }\n        }\n      }\n    }\n    protocols bgp {\n      group <*> {\n        authentication-key-chain bgp_auth;\n        authentication-algorithm hmac-sha-1-96;\n      }\n    }\n  }\n}\napply-groups stig_bgp_auth;",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: DHCP Security\n#}\n{% for vlan, vlan_info in vlan.items() %}\nvlans {\n  vn{{ vlan_info['id'] }} {\n    forwarding-options {\n      dhcp-security {\n        arp-inspection;\n        ip-source-guard;\n      }\n    }\n  }\n}\n{% endfor %}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: BGP Disab;e unused interfaces\n#}\nvlans {\n    disabled_vlan {\n        vlan-id 789;\n    }\n}\n\n{% for intf, intf_info in interface.items() %}\n    {% if intf_info['role'] == \"unused\" %}\ninterfaces {\n  replace: {{ intf_info['intfName'] }} {\n    disable;\n    unit 0 {\n      family ethernet-switching {\n        interface-mode access;\n        vlan {\n          members disabled_vlan;\n        }\n      }\n    }\n  }\n}\n    {% endif %}\n{% endfor %}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: Disk monitor\n#}\nchassis {\n    redundancy {\n        graceful-switchover;\n    }\n    disk-partition /var {\n        level full {\n            free-space 10 percent;\n        }\n        level high {\n            free-space 20 percent;\n        }\n    }\n}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: login\n#}\nsystem {\n  login {\n    message \"{{ STIG['LOGIN']['MESSAGE'] }}\";\n    password {\n      format sha512;\n      minimum-length 15;\n      minimum-upper-cases 1;\n      minimum-lower-cases 1;\n      minimum-numerics 1;\n      minimum-punctuations 1;\n    }\n    class AUDITOR {\n      idle-timeout 10;\n      permissions [configure view-configuration];\n      allow-configuration \"(system syslog)\";\n    }\n    class SR_ENGINEER {\n      idle-timeout 10;\n      permissions all;\n      deny-configuration \"(system syslog)\";\n    }\n    class JR_ENGINEER {\n      idle-timeout 10;\n      permissions all;\n      deny-configuration \"(system syslog)\";\n      deny-commands \"(file delete)\";\n      deny-commands \"(request system software)\";\n    }\n    class LAST_RESORT {\n      idle-timeout 10;\n      permissions all;\n      deny-configuration \"(system syslog)\";\n      deny-commands \"(file delete)\";\n    }\n    retry-options {\n      tries-before-disconnect 3;\n      lockout-period 15;\n    }\n    user emergency {\n      uid 2001;\n      class LAST_RESORT;\n      authentication {\n        encrypted-password {{ STIG['LOGIN']['EMERGENCY_KEY'] }};\n      }\n    }\n  }\n  rng {\n    hmac-drbg;\n  }\n}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: Multicast\n#}\nprotocols {\n  replace: igmp-snooping {\n    vlan all;\n  }\n  replace: mld-snooping {\n    vlan all;\n  }\n}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: NTP\n#}\nsystem {\n    ntp {\n        authentication-key 1 type sha256 value {{ STIG['NTP']['KEY_1'] }}; \n        authentication-key 2 type sha1 value {{ STIG['NTP']['KEY_2'] }}; \n        server 172.16.0.1;\n        server {{ STIG['NTP']['SERVER_1'] }} key 1 prefer;\n        server {{ STIG['NTP']['SERVER_2'] }} key 2;\n        trusted-key [ 1 2 ];\n        source-address {{ management_ip }};\n    }\n}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: Protect RE\n#}\npolicy-options {\n  prefix-list MANAGEMENT {\n{% for net in STIG['MGMT_NETWORKS'] %}\n  {{ net }};\n{% endfor %}\n  }\n  prefix-list BGP {\n  {% for peer, peer_info in bgp_sessions.items() %}\n    {{ peer_info.dest_ip }};\n  {% endfor %}\n  }\n  prefix-list RADIUS {\n    {{ STIG['RADIUS']['SERVER_1'] }};\n    {{ STIG['RADIUS']['SERVER_2'] }};\n  }\n  prefix-list NTP {\n    {{ STIG['NTP']['SERVER_1'] }};\n    {{ STIG['NTP']['SERVER_2']}};\n  }\n  prefix-list APSTRA {\n    {{ STIG['APSTRA_SERVER'] }};\n  }\n}\nfirewall {\n  filter PROTECT-RE {\n    term MANAGEMENT_ACCESS {\n      from {\n        source-prefix-list {\n          MANAGEMENT;\n        }\n        protocol tcp;\n        port ssh;\n      }\n      then {\n        accept;\n      }\n    }\n    term APSTRA_MANAGEMENT {\n      from {\n        source-prefix-list {\n          APSTRA;\n        }\n        protocol tcp;\n        port 830;\n      }\n    }\n    term BGP {\n      from {\n        source-prefix-list {\n          BGP;\n        }\n        protocol tcp;\n        port bgp;\n      }\n      then {\n        accept;\n      }\n    }\n    term RADIUS {\n      from {\n        source-prefix-list {\n          RADIUS;\n        }\n        protocol tcp;\n        port radius;\n      }\n      then {\n        accept;\n      }\n    }\n    term NTP {\n      from {\n        source-prefix-list {\n          NTP;\n        }\n        protocol udp;\n        port ntp;\n      }\n      then {\n        accept;\n      }\n    }\n    term DENY_ICMP_FRAG {\n      from {\n        protocol icmp;\n        is-fragment;\n      }\n      then {\n        discard;\n      }\n    }\n    term ICMP {\n      from {\n        protocol icmp;\n      }\n      then {\n        accept;\n      }\n    }\n    term DENY {\n      then {\n        discard;\n        log;\n      }\n    }\n  }\n}\ninterfaces lo0 {\n  unit 0 {\n    family inet {\n      filter {\n        input PROTECT-RE;\n      }\n    }\n  }\n}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: SNMP v3 configuration\n#}\nsnmp {\n    v3 {\n        vacm {\n            security-to-group {\n                security-model usm {\n                    security-name {{ hostname }} {\n                        group SNMPV3GROUP;\n                    }\n                }\n            }\n            access {\n                group SNMPV3GROUP {\n                    default-context-prefix {\n                        security-model any {\n                            security-level none {\n                                read-view SNMPVIEW;\n                                write-view SNMPVIEW;\n                            }\n                            security-level authentication {\n                                read-view SNMPVIEW;\n                                write-view SNMPVIEW;\n                            }\n                            security-level privacy {\n                                read-view SNMPVIEW;\n                                write-view SNMPVIEW;\n                            }\n                        }\n                    }\n                }\n            }\n        }\n        management-routing-instance mgmt_junos;\n    }\n    engine-id {                         \n        local {{ management_ip }};\n    }\n    view SNMPVIEW {\n        oid .1 include;\n    }\n    routing-instance-access;\n    health-monitor {\n        interval 300;\n        rising-threshold 75;\n        falling-threshold 74;\n    }\n\n}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "set_based_system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: SNMP v3 pass\n#}\nset snmp v3 usm local-engine user {{ hostname }} authentication-sha authentication-password {{ STIG['SNMP']['USER_AUTH_PASS'] }}\nset snmp v3 usm local-engine user {{ hostname }} privacy-aes128 privacy-password {{ STIG['SNMP']['USER_PRIV_PASS'] }}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: SSH\n#}\nsystem {\n  services {\n    ssh {\n      connection-limit 10;\n      max-sessions-per-connection 5;\n      protocol-version v2;\n      macs [hmac-sha2-256 hmac-sha2-512];\n      ciphers [aes192-cbc aes256-cbc aes192-ctr aes256-ctr];\n      key-exchange [ecdh-sha2-nistp521 ecdh-sha2-nistp384];\n      client-alive-count-max 3;\n      client-alive-interval 360;\n    }\n  }\n}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: Storm Control\n#}\nforwarding-options {\n    storm-control-profiles default {\n        all;\n    }\n  }\n{% for intf, intf_info in interface.items() %}\n    {% if ((intf_info.role == \"l2edge\") and (intf_info['lag_mode'] is none )) %}\ninterfaces {\n  {{ intf_info['intfName'] }} {\n    unit 0 {\n      family ethernet-switching {\n        storm-control default;\n      }\n    }\n  }\n}\n    {% endif %}\n    {% if ((intf_info['role'] == \"l2edge\") and ('ae' in intf_info['intfName'])) %}\ninterfaces {\n  {{ intf_info['intfName'] }} {\n    unit 0 {\n      family ethernet-switching {\n        storm-control default;\n      }\n    }\n  }\n}\n    {% endif %}\n{% endfor %}",
+        "negation_template_text": "",
+        "filename": ""
+    },
+    {
+        "config_style": "junos",
+        "section": "system",
+        "template_text": "{# \n    DISCLAIMER: This is a configlet example, customise to your needs before using in production.\n    CONFIGLET: STIG, section: Syslog\n#}\nsystem {\n  time-zone UTC;\n  syslog {\n    file security-log {\n      security info;\n      structured-data;\n      archive size 2097152;\n      archive files 2;\n      archive transfer-interval 1440;\n      archive archive-sites {\n        \"sftp://backup@{{ STIG['SYSLOG']['ARCHIVE_URL'] }}\" password {{ STIG['SYSLOG']['ARCHIVE_KEY'] }};\n      }\n    }\n    file firewall-log {\n      firewall info;\n      structured-data;\n    }\n    file auth-log {\n      authorization info;\n      structured-data;\n    }\n    file change-log {\n      change-log info;\n      structured-data;\n    }\n  host {{ STIG['SYSLOG']['SYSLOG_SERVER'] }} {\n    source-address {{ management_ip }};\n    any info;\n    structured-data;\n    }\n  routing-instance mgmt_junos;\n  }\n}"
+    }
+    ]
+}

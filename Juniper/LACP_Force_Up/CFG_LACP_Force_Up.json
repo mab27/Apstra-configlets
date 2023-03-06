@@ -1,0 +1,13 @@
+{
+      "display_name": "CFG_LACP_Force_Up",
+      "ref_archs": [
+            "two_stage_l3clos"
+      ],
+      "generators": [
+            {
+                  "config_style": "junos",
+                  "section": "interface",
+                  "template_text": "ether-options {\n         802.3ad {\n               lacp {\n                force-up;\n                }\n         }\n}\n"
+            }
+      ]
+}

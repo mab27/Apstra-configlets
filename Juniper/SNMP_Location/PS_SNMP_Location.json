@@ -1,0 +1,12 @@
+{
+    "label": "PS_SNMP_Location",
+    "values": {
+        "SNMP_Location": [
+            {
+                "leaf1": "DC1-Rack30",
+                "leaf3": "DC1-Rack32",
+                "leaf2": "DC1-Rack31"
+            }
+        ]
+    }
+}

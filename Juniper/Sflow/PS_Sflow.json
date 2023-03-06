@@ -1,0 +1,13 @@
+{
+    "label": "PS_Sflow",
+    "values": {
+        "PS_Sflow": [
+            {
+                "Sampling_Rate_Ingress": 1000,
+                "Sampling_Rate_Egress": 1000,
+                "Collector_IP'": "10.10.10.2",
+                "Collector_Port": "3456"
+            }
+        ]
+    }
+}

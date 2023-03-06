@@ -1,0 +1,13 @@
+{
+    "display_name": "CFG_Duplicate_MAC_Detection_Timer",
+    "ref_archs": [
+        "two_stage_l3clos"
+    ],
+    "generators": [
+        {
+            "config_style": "junos",
+            "section": "set_based_system",
+            "template_text": "set protocols evpn duplicate-mac-detection auto-recovery-time 22\n"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+- Get rid of note: deviceModel is a hidden and undocumented feature.
+- Get rid of "created_at", "last_modified_at", "id", 
+    for junos, "negation_template_text", "filename"
+- remove the dual RE 
+- Add GR instead
+- Add context for EVPN host flap: AOS-29762
+- Get rid of PDF
+- Get rid of split(',').
+
+- https://apstrktr.atlassian.net/browse/AOS-14084
+
+
+
+- Add a comment in each Jinja saying "This is community-based, it needs to be tailored to your environment"

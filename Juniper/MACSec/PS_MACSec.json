@@ -1,0 +1,14 @@
+{
+    "label": "PS_MACSec",
+    "values": {
+        "MACSec": [
+            {
+                "connectivity-association-name": "DCI-link",
+                "cipher-suite": "gcm-aes-xpn-128",
+                "security-mode": "static-cak",
+                "ckn": "1122334455667788991102132415361748195011621374158617981900F1F2F3",
+                "cak": "$9$4baDiqmfzn/.mIESrvMDiHkTzp0BIhS/9lKW87NjHkPz369AOIEn6KM8LN-mf5Q69BIEcreRE-Vw2aJFn6/p0hcr8L7s2"
+            }
+        ]
+    }
+}

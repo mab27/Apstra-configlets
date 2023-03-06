@@ -1,0 +1,22 @@
+{
+    "label": "Port_Mirroring",
+    "values": {
+        "Port_Mirroring": [
+            {
+                "Output_Intf": "xe-0/0/2",
+                "Analyser_Type": "Local",
+                "Input_Ingress_Intf": "xe-0/0/0",
+                "Analyser_Name": "Analyser_1",
+                "Input_Egress_Intf": "xe-0/0/1"
+            },
+            {
+                "Output_Ip": "10.0.0.1",
+                "Input_Ingress_Intf": "xe-0/0/3",
+                "Analyser_Type": "Remote",
+                "type": "remote",
+                "Analyser_Name": "Analyser_2",
+                "Input_Egress_Intf": "xe-0/0/2"
+            }
+        ]
+    }
+}

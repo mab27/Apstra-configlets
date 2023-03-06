@@ -1,8 +1,0 @@
-{
-    "values": {
-        "output_if": "xe-0/0/10.0", 
-        "input_egress_if": "xe-0/0/5.0", 
-        "input_ingress_if": "xe-0/0/5.0"
-    }, 
-    "label": "JUNOS Mirroring Session Local"
-}

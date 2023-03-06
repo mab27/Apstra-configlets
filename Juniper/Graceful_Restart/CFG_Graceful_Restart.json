@@ -1,0 +1,13 @@
+{
+    "display_name": "CFG_Graceful_Restart",
+    "ref_archs": [
+        "two_stage_l3clos"
+    ], 
+    "generators": [
+        {
+            "config_style": "junos", 
+            "section": "system",
+            "template_text": "routing-options {\r\n    graceful-restart,\r\n}\r\n{% for routing_zone_name, routing_zone in security_zones.iteritems() %}\r\n    {% if routing_zone_name != 'default' %}\r\nrouting-instances {\r\n    {{ routing_zone_name }} {\r\n        routing-options {\r\n         graceful-restart\r\n        }   \r\n    }\r\n}\r\n    {% endif %}\r\n{% endfor %}"
+        }
+    ]
+}

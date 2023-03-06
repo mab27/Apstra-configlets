@@ -1,0 +1,18 @@
+{
+    "display_name": "CFG_MACSec",
+    "ref_archs": [
+        "two_stage_l3clos"
+    ],
+    "generators": [
+        {
+            "config_style": "junos",
+            "section": "system",
+            "template_text": "security {\r\n    macsec {\r\n        connectivity-association {{ MACSEC['connectivity-association-name'] }} {\r\n            cipher-suite {{ MACSEC['cipher-suite'] }};\r\n            security-mode {{ MACSEC['security-mode'] }};\r\n            include-sci;\r\n            pre-shared-key {\r\n                ckn {{ MACSEC['ckn'] }};\r\n                cak \"{{ MACSEC['cak'] }}\";\r\n            }\r\n        }\r\n    }\r\n}\r\n"
+        },
+        {
+            "config_style": "junos",
+            "section": "interface",
+            "template_text": "connectivity-association {{ MACSEC['connectivity-association-name'] }};\r\n"
+        }
+    ]
+}
